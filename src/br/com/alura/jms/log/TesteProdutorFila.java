@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
+import javax.jms.DeliveryMode;
 import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -36,8 +37,8 @@ public class TesteProdutorFila {
 		MessageProducer producer = session.createProducer(fila);
 		
 		Message message = session.createTextMessage("INFO | APACHE ActiveMQ 5.12.0");
-				
-		producer.send(message);
+		// usando o metodo send passando alguns parametros de se irá persistir caso o ActiveMQ Caia, a prioridade, time to live que é o tempo de vida se ninguem consumir é apagada 
+		producer.send(message, DeliveryMode.NON_PERSISTENT, 3, 50000);
 		
 		new Scanner(System.in).nextLine();
 		

@@ -22,7 +22,7 @@ public class TesteConsumidorFila {
 		InitialContext context = new InitialContext();
 
 		ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
-		Connection connection = factory.createConnection("user","senha");
+		Connection connection = factory.createConnection();
 		connection.start();
 		
 		// Abstrai a parte transacional e configurar como será o recebimento da mensagem
